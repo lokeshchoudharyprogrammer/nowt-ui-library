@@ -1,8 +1,24 @@
+# 🌿 nowt-ui
 
-# nowt-ui-library
+> **Nothing unnecessary. Just clean UI.**  
+A lightweight and customizable UI component library built for speed and simplicity.
 
-A customizable and reusable React UI component library built with TypeScript. Perfect for React and Next.js projects.
+---
 
+## 🚀 Features
+
+- 🎯 **Minimal & Performant** – Designed with performance in mind.
+- 🎨 **Themeable** – Customize styles to fit your brand.
+- 🧱 **Reusable Components** – Common building blocks like Button, Input, Modal, etc.
+- ⚛️ **Framework Friendly** – Works great with React and modern JS frameworks.
+- 🛠️ **Easy to Extend** – Build on top of it or fork it easily.
+
+
+##  ❤️ Why "nowt-ui"?
+“Nowt” is British slang for “nothing” — because this library adds nothing unnecessary. Just clean, reusable components that work.
+
+---
+## 🛠️ Getting Started
 > ⚠️ This library is currently under development. Only the `Button` component is available for now. More components coming soon!
 
 
