@@ -1,0 +1,28 @@
+{
+  "name": "nowt-ui-library",
+  "version": "1.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "rollup": "^4.39.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.8.3"
+  }
+}
