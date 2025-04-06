@@ -1,6 +1,6 @@
 {
   "name": "nowt-ui-library",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,10 +8,10 @@
   "scripts": {
     "build": "rollup -c"
   },
-  "keywords": [],
-  "author": "",
+ 
+  "author": "Lokesh Choudhary",
   "license": "ISC",
-  "description": "",
+
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -24,5 +24,28 @@
     "rollup": "^4.39.0",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.8.3"
-  }
+  },
+  "description": "Nothing unnecessary. Just clean UI.A lightweight and customizable UI component library built for speed and simplicity for React and Next.js.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lokeshchoudharyprogrammer/nowt-ui-library"
+  },
+  "keywords": [
+    "react",
+    "nextjs",
+    "ui",
+    "input-component",
+    "typescript",
+    "custom-ui",
+    "react-components",
+    "nowt-ui-library",
+    "nowt-ui",
+    "ui-library",
+    "ui-component-library",
+    "react-ui-library",
+    "react-component-library",
+    "react-ui-component-library",
+    "react-ui-library",
+    "react-ui-component-library"
+  ]
 }

@@ -484,5 +484,22 @@ const Button = ({ label, onClick, size = 'medium', variant = 'primary', loading 
         ` })] }));
 };
 
-export { Button };
+const Input = require$$0.forwardRef(({ label, labelClassName, containerClassName, containerStyle, helperText, error, leftIcon, rightIcon, className, style, ...props }, ref) => {
+    return (jsxRuntimeExports.jsxs("div", { className: containerClassName, style: {
+            display: 'flex',
+            flexDirection: 'column',
+            marginBottom: '1rem',
+            ...containerStyle,
+        }, children: [label && (jsxRuntimeExports.jsx("label", { htmlFor: props.id, className: labelClassName, style: { marginBottom: '0.5rem' }, children: label })), jsxRuntimeExports.jsxs("div", { style: { position: 'relative', display: 'flex', alignItems: 'center' }, children: [leftIcon && (jsxRuntimeExports.jsx("div", { style: { position: 'absolute', left: '10px' }, children: leftIcon })), jsxRuntimeExports.jsx("input", { ref: ref, ...props, className: className, style: {
+                            padding: leftIcon || rightIcon ? '10px 40px' : '10px 16px',
+                            border: `1px solid ${error ? 'red' : '#ccc'}`,
+                            borderRadius: '6px',
+                            width: '100%',
+                            fontSize: '16px',
+                            ...style,
+                        } }), rightIcon && (jsxRuntimeExports.jsx("div", { style: { position: 'absolute', right: '10px' }, children: rightIcon }))] }), helperText && !error && (jsxRuntimeExports.jsx("small", { style: { color: '#666', marginTop: '4px' }, children: helperText })), error && jsxRuntimeExports.jsx("small", { style: { color: 'red', marginTop: '4px' }, children: error })] }));
+});
+Input.displayName = 'Input';
+
+export { Button, Input };
 //# sourceMappingURL=index.js.map
