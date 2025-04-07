@@ -1,6 +1,2 @@
-node_modules
-src
-./src
-./src
-
-/src
+node_modules/
+src/
