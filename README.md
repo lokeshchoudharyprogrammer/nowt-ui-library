@@ -19,7 +19,7 @@ A lightweight and customizable UI component library built for speed and simplici
 
 ---
 ## 🛠️ Getting Started
-> ⚠️ This library is currently under development. Only the `Button , Input ` component is available for now. More components coming soon!
+> ⚠️ This library is currently under development. Only the `Button , Input , Card` component is available for now. More components coming soon!
 
 
 ---
@@ -36,6 +36,7 @@ npm install nowt-ui-library
 
 - [Button Component](#button-component)  
 - [Input Component](#input-component)
+- [Card Component](#card-component)
 
 
 ## 📦 Usage
@@ -277,6 +278,89 @@ You can easily style the `<Input />` component using CSS. Here's an example of h
 | `...rest`          | Native `<input>` props        | Supports all native input props        |
 
 ---
+
+## Card Component
+
+
+A clean, modern, and highly customizable React component for displaying premium cards — ideal for SaaS apps, dashboards, e-commerce, portfolios, testimonials, and more.
+
+> Built with ❤️ for developers who care about design and usability.
+
+---
+
+## 🔥 Features
+
+- ⚡ Production-ready card UI
+- 💅 Customizable props (themes, actions, avatars, tags, etc.)
+- 🎨 Light & dark themes
+- 📱 Responsive & mobile-friendly
+- 🧩 Supports cover images, avatars, progress bars, badges, status icons & more
+
+
+
+## 📦 Installation
+
+```bash
+npm install nowt-ui-library
+```
+---
+
+## 🚀 Usage
+```tsx
+import React from 'react';
+import {Card} from 'nowt-ui-library';
+
+const App = () => {
+  return (
+    <CleanCardUltraV2
+    title="AI Conference 2025"
+    subtitle="Starts April 14, 2025"
+    image="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    description="Join over 10,000 developers and learn about the future of AI and ML."
+    tag="Online"
+    tags={['AI', 'ML', 'Future Tech']}
+    theme="dark"
+    width={400}
+    hlight
+    status="success"
+    badge="Live"
+    footer={<span style={{ fontWeight: 500 }}>Save your seat →</span>}
+    />
+  );
+};
+
+```
+
+---
+
+## ✨ Props
+
+| Prop         | Type                  | Description                                                              |
+|--------------|-----------------------|--------------------------------------------------------------------------|
+| `title`      | `string`              | Main title                                                               |
+| `subtitle`   | `string`              | Subtitle text                                                            |
+| `description`| `string`              | Optional card description                                                |
+| `image`      | `string`              | Optional cover image                                                     |
+| `avatar`     | `string`              | Optional avatar image (circular)                                         |
+| `badge`      | `string`              | Small badge on top-left (e.g., Pro, Beta)                                |
+| `tag`        | `string`              | Highlighted tag above title                                              |
+| `tags`       | `string[]`            | Array of tags (displayed as chips)                                       |
+| `status`     | `"success"` \| `"warning"` \| `"error"` \| `"neutral"` | Status dot beside avatar or tag                         |
+| `progress`   | `number`              | Optional progress bar (0-100)                                            |
+| `theme`      | `"light"` \| `"dark"` | Theme styling                                                            |
+| `width`      | `number`              | Width of the card (default `320`)                                        |
+| `footer`     | `ReactNode`           | Content shown at bottom                                                  |
+| `actions`    | `ReactNode`           | Buttons, links, etc. for user action                                     |
+| `hlight`     | `boolean`             | Apply hover highlight effect                                             |
+
+---
+
+## 🎨 Custom Styling
+
+Wrap the component in your own layout or apply Tailwind/CSS classes via container.  
+You can also extend it with your own `theme`, `animation`, or even slot-based customization.
+
+
 
 
 

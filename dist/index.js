@@ -1,4 +1,4 @@
-import require$$0 from 'react';
+import require$$0, { useState, useRef, useEffect } from 'react';
 
 var jsxRuntime = {exports: {}};
 
@@ -501,5 +501,147 @@ const Input = require$$0.forwardRef(({ label, labelClassName, containerClassName
 });
 Input.displayName = 'Input';
 
-export { Button, Input };
+const Card = ({ title, subtitle, description, image, avatar, badge, tag, tags = [], status, progress, theme = 'light', footer, actions, onClick, width, hlight, responsive = false, loading = false, className = '', height, }) => {
+    const [hovered, setHovered] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [animatedProgress, setAnimatedProgress] = useState(0);
+    const progressRef = useRef(null);
+    useEffect(() => {
+        if (typeof progress === 'number') {
+            let frame = 0;
+            const totalFrames = 60;
+            const easeOut = (t) => 1 - Math.pow(1 - t, 4);
+            const animate = () => {
+                frame++;
+                const progressValue = easeOut(frame / totalFrames) * progress;
+                setAnimatedProgress(Math.min(progress, progressValue));
+                if (frame < totalFrames)
+                    requestAnimationFrame(animate);
+            };
+            animate();
+        }
+    }, [progress]);
+    const isDark = theme === 'dark';
+    const colors = {
+        bg: isDark ? '#111' : '#fff',
+        border: isDark ? '#2a2a2a' : '#e2e2e2',
+        text: isDark ? '#f4f4f4' : '#1a1a1a',
+        subtext: isDark ? '#aaa' : '#555',
+        tagBg: isDark ? '#1e1e1e' : '#f2f2f2',
+        progress: '#4f46e5',
+    };
+    const statusColor = {
+        success: '#22c55e',
+        warning: '#f59e0b',
+        danger: '#ef4444',
+        neutral: '#9ca3af',
+    };
+    const handleClick = () => {
+        if (onClick) {
+            setClicked(true);
+            onClick();
+            setTimeout(() => setClicked(false), 150);
+        }
+    };
+    if (loading) {
+        return (jsxRuntimeExports.jsx("div", { style: {
+                borderRadius: 20,
+                backgroundColor: isDark ? '#1e1e1e' : '#f1f1f1',
+                height: 300,
+                width: '100%',
+                animation: 'pulse 1.5s infinite ease-in-out',
+            } }));
+    }
+    return (jsxRuntimeExports.jsxs("div", { onClick: handleClick, onMouseEnter: () => setHovered(true), onMouseLeave: () => setHovered(false), role: onClick ? 'button' : 'region', "aria-label": `Card for ${title}`, className: className, style: {
+            background: colors.bg,
+            border: `1px solid ${colors.border}`,
+            borderRadius: 20,
+            padding: 20,
+            width: responsive ? '100%' : typeof width === 'number' ? `${width}px` : width || '100%',
+            height: typeof height === 'number' ? `${height}px` : height, // ✅ ADDED
+            boxShadow: hovered
+                ? isDark
+                    ? '0 12px 24px rgba(0,0,0,0.4)'
+                    : '0 10px 24px rgba(0,0,0,0.08)'
+                : typeof hlight === 'number'
+                    ? `0 0 0 3px rgba(79, 70, 229, ${hlight})`
+                    : hlight === true
+                        ? '0 0 0 3px rgba(79, 70, 229, 0.3)'
+                        : 'none',
+            transform: hovered ? 'scale(1.02)' : clicked ? 'scale(0.98)' : 'scale(1)',
+            transition: 'all 0.25s ease',
+            cursor: onClick ? 'pointer' : 'default',
+            fontFamily: 'Inter, sans-serif',
+        }, children: [jsxRuntimeExports.jsxs("div", { style: { display: 'flex', alignItems: 'center', marginBottom: 16 }, children: [avatar && (jsxRuntimeExports.jsx("img", { src: avatar, alt: "User avatar", style: {
+                            width: 48,
+                            height: 48,
+                            borderRadius: '50%',
+                            marginRight: 16,
+                            objectFit: 'cover',
+                        }, loading: "lazy" })), jsxRuntimeExports.jsxs("div", { style: { flex: 1 }, children: [jsxRuntimeExports.jsx("h2", { style: {
+                                    margin: 0,
+                                    fontSize: 18,
+                                    color: colors.text,
+                                    minHeight: 48,
+                                    lineHeight: '24px',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis',
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 2,
+                                    WebkitBoxOrient: 'vertical',
+                                }, children: title }), subtitle && (jsxRuntimeExports.jsx("p", { style: { margin: '4px 0 0', fontSize: 14, color: colors.subtext }, children: subtitle }))] }), status && (jsxRuntimeExports.jsx("div", { style: {
+                            width: 10,
+                            height: 10,
+                            backgroundColor: statusColor[status],
+                            borderRadius: '50%',
+                            marginLeft: 10,
+                        }, title: status })), badge && (jsxRuntimeExports.jsx("span", { style: {
+                            backgroundColor: '#4f46e5',
+                            color: '#fff',
+                            fontSize: 11,
+                            padding: '4px 10px',
+                            borderRadius: 8,
+                            marginLeft: 8,
+                        }, children: badge }))] }), image && (jsxRuntimeExports.jsx("img", { src: image, alt: title + ' image', loading: "lazy", style: {
+                    width: '100%',
+                    height: 180,
+                    objectFit: 'cover',
+                    borderRadius: 12,
+                    marginBottom: 16,
+                } })), description && (jsxRuntimeExports.jsx("p", { style: { fontSize: 15, color: colors.subtext, marginBottom: 16 }, children: description })), jsxRuntimeExports.jsxs("div", { style: { display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }, children: [tag && (jsxRuntimeExports.jsx("span", { style: {
+                            backgroundColor: colors.tagBg,
+                            color: colors.subtext,
+                            fontSize: 12,
+                            padding: '4px 10px',
+                            borderRadius: 6,
+                        }, children: tag })), tags.map((t, i) => (jsxRuntimeExports.jsx("span", { style: {
+                            backgroundColor: colors.tagBg,
+                            color: colors.subtext,
+                            fontSize: 12,
+                            padding: '4px 10px',
+                            borderRadius: 6,
+                        }, children: t }, i)))] }), typeof progress === 'number' && (jsxRuntimeExports.jsx("div", { style: { marginTop: 10, marginBottom: 16 }, children: jsxRuntimeExports.jsx("div", { style: {
+                        height: 6,
+                        width: '100%',
+                        backgroundColor: isDark ? '#2e2e2e' : '#e4e4e4',
+                        borderRadius: 4,
+                        overflow: 'hidden',
+                        backdropFilter: 'blur(6px)',
+                        WebkitBackdropFilter: 'blur(6px)',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                    }, children: jsxRuntimeExports.jsx("div", { ref: progressRef, style: {
+                            width: `${animatedProgress}%`,
+                            height: '100%',
+                            backgroundColor: colors.progress,
+                            borderRadius: 4,
+                            transition: 'width 1.6s ease',
+                        } }) }) })), actions && (jsxRuntimeExports.jsx("div", { style: {
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    gap: 10,
+                    marginTop: 16,
+                }, children: actions })), footer && jsxRuntimeExports.jsx("div", { style: { marginTop: 16 }, children: footer })] }));
+};
+
+export { Button, Card, Input };
 //# sourceMappingURL=index.js.map
