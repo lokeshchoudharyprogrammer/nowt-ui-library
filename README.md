@@ -37,6 +37,7 @@ npm install nowt-ui-library
 - [Button Component](#button-component)  
 - [Input Component](#input-component)
 - [Card Component](#card-component)
+- [TextArea Component](#textarea-component)
 
 
 ## 📦 Usage
@@ -312,7 +313,7 @@ import {Card} from 'nowt-ui-library';
 
 const App = () => {
   return (
-    <CleanCardUltraV2
+    <Card
     title="AI Conference 2025"
     subtitle="Starts April 14, 2025"
     image="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -361,7 +362,58 @@ Wrap the component in your own layout or apply Tailwind/CSS classes via containe
 You can also extend it with your own `theme`, `animation`, or even slot-based customization.
 
 
+---
 
+
+## TextArea Component
+
+
+
+## 📦 Installation
+
+```bash
+npm install nowt-ui-library
+```
+---
+
+## 🚀 Usage
+```tsx
+import React from 'react';
+import {TextArea} from 'nowt-ui-library';
+
+const App = () => {
+  return (
+        <TextArea
+          label="Leave Feedback"
+          theme="dark"
+          autosize
+          maxLength={300}
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+          emoji={true}
+          width="100%"
+          height={120}
+          placeholder="Tell us what you think..."
+          isMic={true}
+        />
+  );
+};
+
+```
+## ✨ Props
+
+| Prop        | Type                                   | Description                                           |
+|-------------|----------------------------------------|-------------------------------------------------------|
+| `label`     | `string` \| `null` \| `undefined`      | Optional label for the textarea                      |
+| `maxLength` | `number`                               | Maximum number of characters allowed                 |
+| `autosize`  | `boolean`                              | Whether the textarea should auto-resize              |
+| `theme`     | `Theme`                                | Custom theme object for styling                      |
+| `draftKey`  | `string`                               | Key used to save textarea content as draft           |
+| `width`     | `string` \| `number`                   | Width of the textarea                                |
+| `height`    | `string` \| `number`                   | Height of the textarea                               |
+| `emoji`     | `boolean`                              | Enable emoji input inside textarea                   |
+| `isMic`     | `boolean`                              | Show microphone icon for voice input                 |
+| `...rest`   | `React.TextareaHTMLAttributes<HTMLTextAreaElement>` | All standard `<textarea>` HTML attributes |
 
 
 ## 🧑‍💻 Author

@@ -643,5 +643,101 @@ const Card = ({ title, subtitle, description, image, avatar, badge, tag, tags = 
                 }, children: actions })), footer && jsxRuntimeExports.jsx("div", { style: { marginTop: 16 }, children: footer })] }));
 };
 
-export { Button, Card, Input };
+const emojis = [
+    '😊', '🔥', '🎉', '👍', '❤️', '🚀', '💡', '😂', '🙌', '🌟',
+    '😎', '👏', '🤖', '💯', '✨', '📚', '🧠', '📝', '🧩', '📌',
+    '💬', '😇', '🥳', '😜', '🌈', '🎯', '🏆', '🥁', '🛠️', '🎨',
+    '📈', '🧃', '📦', '🍕', '☕', '🍿', '🥇', '🔐', '🧪', '🧘',
+    '🔍', '🎮', '🌍', '🕹️', '🎵', '🗂️', '🎓', '📷', '🎬', '🔧'
+];
+const TextArea = ({ label, maxLength = 200, autosize = true, theme: initialTheme = 'light', draftKey = 'textarea-draft', width = '100%', height, emoji = false, isMic = false, value = '', onChange, ...props }) => {
+    const [theme, setTheme] = useState(initialTheme);
+    const [showEmoji, setShowEmoji] = useState(false);
+    const [listening, setListening] = useState(false);
+    const ref = useRef(null);
+    const recognitionRef = useRef(null);
+    useEffect(() => {
+        resize();
+    }, [value]);
+    const resize = () => {
+        if (autosize && ref.current) {
+            ref.current.style.height = 'auto';
+            ref.current.style.height = ref.current.scrollHeight + 'px';
+        }
+    };
+    const insertAtCursor = (insert) => {
+        const el = ref.current;
+        if (!el)
+            return;
+        const start = el.selectionStart;
+        const end = el.selectionEnd;
+        const newValue = String(value).slice(0, start) + insert + String(value).slice(end);
+        onChange?.({ target: { value: newValue } });
+        setTimeout(() => {
+            el.selectionStart = el.selectionEnd = start + insert.length;
+            el.focus();
+        }, 0);
+    };
+    const startListening = () => {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert('Speech recognition not supported in this browser.');
+            return;
+        }
+        const recognition = new SpeechRecognition();
+        recognitionRef.current = recognition;
+        recognition.lang = 'en-US';
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.onresult = (e) => {
+            const transcript = e.results[0][0].transcript;
+            insertAtCursor(transcript);
+        };
+        recognition.onend = () => setListening(false);
+        recognition.onerror = () => setListening(false);
+        recognition.start();
+        setListening(true);
+    };
+    const isDark = theme === 'dark';
+    return (jsxRuntimeExports.jsxs("div", { style: {
+            background: isDark ? '#121212' : '#fff',
+            color: isDark ? '#f1f1f1' : '#1a1a1a',
+            border: `1px solid ${isDark ? '#333' : '#ddd'}`,
+            borderRadius: 12,
+            padding: 20,
+            boxShadow: isDark ? '0 0 0 transparent' : '0 3px 12px rgba(0,0,0,0.07)',
+            width,
+            maxWidth: '100%',
+            fontFamily: 'Inter, sans-serif',
+            transition: 'all 0.3s ease-in-out',
+        }, children: [jsxRuntimeExports.jsxs("div", { style: { display: 'flex', gap: 12, marginBottom: 12, flexWrap: 'wrap' }, children: [label && jsxRuntimeExports.jsx("label", { style: { fontWeight: 600, fontSize: 16 }, children: label }), emoji && (jsxRuntimeExports.jsx("button", { onClick: () => setShowEmoji(!showEmoji), style: {
+                            background: isDark ? '#262626' : '#f0f0f0',
+                            border: '1px solid transparent',
+                            borderRadius: 6,
+                            padding: '6px 10px',
+                            fontSize: 16,
+                            cursor: 'pointer',
+                        }, children: "\uD83D\uDE04" })), isMic && (jsxRuntimeExports.jsx("button", { onClick: startListening, style: {
+                            background: listening ? '#f87171' : '#4ade80',
+                            border: 'none',
+                            borderRadius: 6,
+                            padding: '6px 10px',
+                            fontSize: 16,
+                            cursor: 'pointer',
+                            color: '#fff',
+                        }, children: "\uD83C\uDFA4" }))] }), jsxRuntimeExports.jsx("textarea", { ref: ref, value: value, onChange: onChange, maxLength: maxLength, style: {
+                    width: '100%',
+                    border: 'none',
+                    resize: 'none',
+                    fontSize: 16,
+                    background: 'transparent',
+                    color: isDark ? '#f1f1f1' : '#1a1a1a',
+                    outline: 'none',
+                    minHeight: height || 60,
+                    maxHeight: height || 200, // you can adjust this
+                    overflowY: 'auto', // scroll only if content exceeds maxHeight
+                }, ...props }), showEmoji && (jsxRuntimeExports.jsx("div", { style: { marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap' }, children: emojis.map((em) => (jsxRuntimeExports.jsx("span", { onClick: () => insertAtCursor(em), style: { cursor: 'pointer', fontSize: 20 }, children: em }, em))) }))] }));
+};
+
+export { Button, Card, Input, TextArea };
 //# sourceMappingURL=index.js.map
